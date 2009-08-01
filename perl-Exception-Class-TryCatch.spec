@@ -1,20 +1,21 @@
-%define module   Exception-Class-TryCatch
-%define version    1.12
-%define release    %mkrel 1
+%define upstream_name    Exception-Class-TryCatch
+%define upstream_version 1.12
 
-Name:       perl-%{module}
-Version:    %{version}
-Release:    %{release}
-License:    GPL or Artistic
-Group:      Development/Perl
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:    Syntactic tryE<sol>catch sugar for use with Exception::Class
-Source:     http://www.cpan.org/modules/by-module/Exception/%{module}-%{version}.tar.gz
-Url:        http://search.cpan.org/dist/%{module}
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Exception/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires: perl(Exception::Class)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Module::Build::Compat)
 BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Exception::Class::TryCatch provides syntactic sugar for use with the
@@ -36,7 +37,7 @@ Inspiration for this module is due in part to Dave Rolsky's article
 (Rolsky 2004).
 
 %prep
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -57,4 +58,3 @@ rm -rf %buildroot
 %doc Changes LICENSE README
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
