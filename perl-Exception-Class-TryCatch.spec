@@ -3,7 +3,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Release:    %mkrel 2
 
 Summary:    Syntactic tryE<sol>catch sugar for use with Exception::Class
 License:    GPL+ or Artistic
