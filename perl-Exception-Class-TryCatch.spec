@@ -1,21 +1,21 @@
 %define upstream_name    Exception-Class-TryCatch
 %define upstream_version 1.12
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Syntactic tryE<sol>catch sugar for use with Exception::Class
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Exception/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Syntactic tryE<sol>catch sugar for use with Exception::Class
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Exception/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Exception::Class)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Module::Build::Compat)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Exception::Class)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Module::Build::Compat)
+BuildArch:	noarch
 
 %description
 Exception::Class::TryCatch provides syntactic sugar for use with the
@@ -40,21 +40,39 @@ Inspiration for this module is due in part to Dave Rolsky's article
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes LICENSE README
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
+
+
+%changelog
+* Sun Apr 17 2011 Funda Wang <fwang@mandriva.org> 1.120.0-2mdv2011.0
++ Revision: 654185
+- rebuild for updated spec-helper
+
+* Sat Aug 01 2009 Jérôme Quelin <jquelin@mandriva.org> 1.120.0-1mdv2011.0
++ Revision: 405857
+- rebuild using %%perl_convert_version
+
+* Tue Nov 04 2008 Guillaume Rousse <guillomovitch@mandriva.org> 1.12-1mdv2009.1
++ Revision: 299759
+- update to new version 1.12
+
+* Fri Oct 10 2008 Guillaume Rousse <guillomovitch@mandriva.org> 1.11-1mdv2009.1
++ Revision: 291361
+- import perl-Exception-Class-TryCatch
+
+
+* Fri Oct 10 2008 Guillaume Rousse <guillomovitch@mandriva.org> 1.11-1mdv2009.1
+- initial mdv release, generated with cpan2dist
+
