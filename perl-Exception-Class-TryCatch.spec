@@ -1,9 +1,8 @@
-%define upstream_name    Exception-Class-TryCatch
-%define upstream_version 1.12
+%define upstream_name    Exception-Class-TryCatch%define upstream_version 1.13
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
-Release:	3
+Release:	1
 
 Summary:	Syntactic tryE<sol>catch sugar for use with Exception::Class
 License:	GPL+ or Artistic
@@ -75,4 +74,5 @@ make test
 
 * Fri Oct 10 2008 Guillaume Rousse <guillomovitch@mandriva.org> 1.11-1mdv2009.1
 - initial mdv release, generated with cpan2dist
+
 
